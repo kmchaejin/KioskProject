@@ -7,26 +7,31 @@ public class MenuItem {
     String name;
     double price;
     String explanation;
-    int quantity;
 
-    List<String> nameList = new ArrayList<>();
-    List<Double> priceList = new ArrayList<>();
-    List<String> explanationList = new ArrayList<>();
-    List<Object> returnList = new ArrayList<>();
-
-    public void addList(String name, double price, String explanation){
-        nameList.add(name);
-        priceList.add(price);
-        explanationList.add(explanation);
-        quantity++;
+    public void setItem(String name, double price, String explanation){
+        this.name = name;
+        this.price = price;
+        this.explanation = explanation;
     }
 
-    public Object getList(int index){
-        returnList.clear();
-        returnList.add(nameList.get(index));
-        returnList.add(priceList.get(index));
-        returnList.add(explanationList.get(index));
+    public String getName(){
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        return returnList;
+    public double getPrice(){
+        return price;
+    }
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getExplanation(){
+        return explanation;
+    }
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
     }
 }

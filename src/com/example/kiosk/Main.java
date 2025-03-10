@@ -8,7 +8,7 @@ public class Main {
         List<Object> name = new ArrayList<>();
         List<Object> price = new ArrayList<>();
         List<Object> explanation = new ArrayList<>();
-        List<Object> list = new ArrayList<>();
+        List<List<Object>> list = new ArrayList<>();
 
         name.add("ShackBurger");
         price.add(6.9);
