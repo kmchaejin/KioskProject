@@ -41,7 +41,12 @@ public class Kiosk {
             // 입력값이 0이면 프로그램 종료
             if (inputNum == 0) {
                 System.out.println("프로그램을 종료합니다.");
-            } else {
+            }
+            // 입력값이 0 이하이거나 햄버거 종류보다 큰 경우 재입력
+            else if(inputNum < 0 || inputNum > menuItems.get(0).size()){
+                System.out.println("유효하지 않은 입력입니다. 다시 입력해주세요.\n");
+                continue;
+            }else {
                 // 선택한 햄버거 정보만 출력
                 for(int row = 0; row < menuItems.size(); row++){
                     System.out.print(menuItems.get(row).get(inputNum-1) + "  ");
