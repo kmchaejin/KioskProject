@@ -5,32 +5,31 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Object> name = new ArrayList<>();
-        List<Object> price = new ArrayList<>();
-        List<Object> explanation = new ArrayList<>();
-        List<List<Object>> list = new ArrayList<>();
+        Menu burger = new Menu("Burger");
+        Menu beverage = new Menu("Beverage");
 
-        name.add("ShackBurger");
-        price.add(6.9);
-        explanation.add("토마토, 양상추, 쉑소스가 토핑된 치즈버거");
+        MenuItem item1 = new MenuItem();
+        item1.setItem("ShackBurger", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거");
+        burger.addMenuItem(item1);
 
-        name.add("SmokeShack");
-        price.add(8.9);
-        explanation.add("베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거");
+        MenuItem item2 = new MenuItem();
+        item2.setItem("SmokeShack", 8.9, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거");
+        burger.addMenuItem(item2);
 
-        name.add("Cheeseburger");
-        price.add(6.9);
-        explanation.add("포테이토 번과 비프패티, 치즈가 토핑된 치즈버거");
+        MenuItem item3 = new MenuItem();
+        item3.setItem("Cheeseburger", 6.9, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거");
+        burger.addMenuItem(item3);
 
-        name.add("Hamburger");
-        price.add(5.4);
-        explanation.add("비프패티를 기반으로 야채가 들어간 기본버거");
+        MenuItem item4 = new MenuItem();
+        item4.setItem("Hamburger", 5.4, "비프패티를 기반으로 야채가 들어간 기본버거");
+        burger.addMenuItem(item4);
 
-        list.add(name);
-        list.add(price);
-        list.add(explanation);
+        // 생성된 카테고리를 리스트에 담아서 Kiosk에 전달
+        List<Menu> categoryList = new ArrayList<>();
+        categoryList.add(burger);
+        categoryList.add(beverage);
 
-        Kiosk kiosk = new Kiosk(list);
+        Kiosk kiosk = new Kiosk(categoryList);
         kiosk.start();
     }
 }
