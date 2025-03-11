@@ -12,11 +12,11 @@ public class MenuView {
     }
 
     void printItems(Menu menu){
-        for(int i = 0; i < menu.menuItems.size(); i++){
+        for(int i = 0; i < menu.getItemList().size(); i++){
             System.out.print((i + 1) + ". ");
-            System.out.print(menu.menuItems.get(i).getName() + " | ");
-            System.out.print(menu.menuItems.get(i).getPrice() + " | ");
-            System.out.println(menu.menuItems.get(i).getExplanation());
+            System.out.print(menu.getItemList().get(i).getName() + " | ");
+            System.out.print(menu.getItemList().get(i).getPrice() + " | ");
+            System.out.println(menu.getItemList().get(i).getExplanation());
         }
         System.out.println("0. 뒤로가기");
     }

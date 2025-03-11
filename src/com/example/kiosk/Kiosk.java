@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Kiosk {
-    List<Menu> categoryList = new ArrayList<>();
+    private List<Menu> categoryList = new ArrayList<>();
 
     Kiosk(List<Menu> categoryList) {
         this.categoryList = categoryList;
@@ -43,9 +43,9 @@ public class Kiosk {
 
                 if(itemNum != 0){
                     System.out.print("선택한 메뉴: ");
-                    System.out.print(categoryList.get(categoryNum - 1).menuItems.get(itemNum-1).getName() + " | ");
-                    System.out.print(categoryList.get(categoryNum - 1).menuItems.get(itemNum-1).getPrice() + " | ");
-                    System.out.println(categoryList.get(categoryNum - 1).menuItems.get(itemNum-1).getExplanation() + "\n");
+                    System.out.print(categoryList.get(categoryNum - 1).getItemList().get(itemNum-1).getName() + " | ");
+                    System.out.print(categoryList.get(categoryNum - 1).getItemList().get(itemNum-1).getPrice() + " | ");
+                    System.out.println(categoryList.get(categoryNum - 1).getItemList().get(itemNum-1).getExplanation() + "\n");
 
                 }
             }
