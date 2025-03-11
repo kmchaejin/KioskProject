@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Menu {
     // 각 객체(카테고리)에 해당되는 메뉴아이템이 리스트에 저장됨
-    List<MenuItem> menuItems = new ArrayList<>();
+    private final List<MenuItem> menuItems = new ArrayList<>();
 
-    String categoryName;
+    private final String categoryName;
 
     Menu(String categoryName){
         this.categoryName = categoryName;
@@ -19,5 +19,9 @@ public class Menu {
 
     public String getCategoryName(){
         return categoryName;
+    }
+
+    public List<MenuItem> getItemList(){
+        return menuItems;
     }
 }
