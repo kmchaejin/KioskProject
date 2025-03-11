@@ -5,53 +5,49 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Kiosk {
-    List<List<Object>> menuItems = new ArrayList<>();
+    List<Menu> categoryList = new ArrayList<>();
 
-    Kiosk(List<List<Object>> list) {
-        this.menuItems = list;
+    Kiosk(List<Menu> categoryList) {
+        this.categoryList = categoryList;
     }
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
+        MenuView view = new MenuView();
 
         // 사용자가 선택할 메뉴 번호 초기화
-        int inputNum = 1;
+        int categoryNum = 1;
 
         //  사용자가 0 입력 전까지 메뉴 선택 반복
-        while (inputNum != 0) {
-            System.out.println("SHAKESHACK MENU");
+        while (categoryNum != 0) {
+            // 메인 메뉴 출력
+            System.out.println("[ Main MENU ]");
+            view.printCategory(categoryList);
 
-            /*
-            반복하면서 리스트의 모든 인덱스에 접근 -> 모든 메뉴 출력
-            row 1: ["ShackBurger", "SmokeShack", "Cheeseburger", ...]
-            row 2: [6.9, 8.9, 6.9, ...]
-            */
-            for (int col = 0; col < menuItems.get(0).size(); col++) {
-                    System.out.print((col + 1) + ". | ");
-                for (int row = 0; row < menuItems.size(); row++) {
-                    System.out.print(menuItems.get(row).get(col));
-                    System.out.print(" | ");
-                }
-                System.out.println();
-            }
-            System.out.println("0. 종료");
-
-            inputNum = scanner.nextInt();
+            categoryNum = scanner.nextInt();
 
             // 입력값이 0이면 프로그램 종료
-            if (inputNum == 0) {
+            if (categoryNum == 0) {
                 System.out.println("프로그램을 종료합니다.");
             }
             // 입력값이 0 이하이거나 햄버거 종류보다 큰 경우 재입력
-            else if(inputNum < 0 || inputNum > menuItems.get(0).size()){
+            else if(categoryNum < 0 || categoryNum > categoryList.size()){
                 System.out.println("유효하지 않은 입력입니다. 다시 입력해주세요.\n");
-                continue;
-            }else {
-                // 선택한 햄버거 정보만 출력
-                for(int row = 0; row < menuItems.size(); row++){
-                    System.out.print(menuItems.get(row).get(inputNum-1) + "  ");
+            }
+            // 선택한 카테고리 메뉴아이템 출력
+            else {
+                System.out.println("[ " + categoryList.get(categoryNum - 1).getCategoryName().toUpperCase() + "MENU ]");
+                view.printItems(categoryList.get(categoryNum - 1));
+
+                int itemNum = scanner.nextInt();
+
+                if(itemNum != 0){
+                    System.out.print("선택한 메뉴: ");
+                    System.out.print(categoryList.get(categoryNum - 1).menuItems.get(itemNum-1).getName() + " | ");
+                    System.out.print(categoryList.get(categoryNum - 1).menuItems.get(itemNum-1).getPrice() + " | ");
+                    System.out.println(categoryList.get(categoryNum - 1).menuItems.get(itemNum-1).getExplanation() + "\n");
+
                 }
-                System.out.println("\n");
             }
         }
         scanner.close();
