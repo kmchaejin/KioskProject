@@ -14,42 +14,60 @@ public class Kiosk {
     public void start() {
         Scanner scanner = new Scanner(System.in);
         MenuView view = new MenuView();
+        Cart myCart = new Cart();
 
-        // 사용자가 선택할 메뉴 번호 초기화
-        int categoryNum = 1;
+        int categoryNum = 1, itemNum = 1, decisionNum;
 
-        //  사용자가 0 입력 전까지 메뉴 선택 반복
         while (categoryNum != 0) {
-            // 메인 메뉴 출력
-            System.out.println("[ Main MENU ]");
+            // 메인 메뉴 view 호출
             view.printCategory(categoryList);
-
             categoryNum = scanner.nextInt();
 
             // 입력값이 0이면 프로그램 종료
             if (categoryNum == 0) {
                 System.out.println("프로그램을 종료합니다.");
+                continue;
             }
-            // 입력값이 0 이하이거나 햄버거 종류보다 큰 경우 재입력
-            else if(categoryNum < 0 || categoryNum > categoryList.size()){
+
+            // 입력값이 0 이하이거나 카테고리 개수보다 큰 경우 재입력
+            if (categoryNum < 0 || categoryNum > categoryList.size()) {
                 System.out.println("유효하지 않은 입력입니다. 다시 입력해주세요.\n");
+                continue;
             }
-            // 선택한 카테고리 메뉴아이템 출력
-            else {
-                System.out.println("[ " + categoryList.get(categoryNum - 1).getCategoryName().toUpperCase() + "MENU ]");
-                view.printItems(categoryList.get(categoryNum - 1));
 
-                int itemNum = scanner.nextInt();
+            while (itemNum != 0) {
+                // 메뉴 리스트 view 호출
+                view.printItemList(categoryList.get(categoryNum - 1));
+                itemNum = scanner.nextInt();
 
-                if(itemNum != 0){
-                    System.out.print("선택한 메뉴: ");
-                    System.out.print(categoryList.get(categoryNum - 1).getItemList().get(itemNum-1).getName() + " | ");
-                    System.out.print(categoryList.get(categoryNum - 1).getItemList().get(itemNum-1).getPrice() + " | ");
-                    System.out.println(categoryList.get(categoryNum - 1).getItemList().get(itemNum-1).getExplanation() + "\n");
+                // 뒤로가기 선택
+                if (itemNum == 0) {
+                    break;
+                }
 
+                // 입력값이 0 이하이거나 메뉴 아이템 개수보다 큰 경우 재입력
+                if (itemNum < 0 || itemNum > categoryList.get(categoryNum - 1).getItemList().size()) {
+                    System.out.println("유효하지 않은 입력입니다. 다시 입력해주세요.\n");
+                    continue;
+                }
+
+                // 장바구니에 추가할지 확인하는 view 호출
+                view.checkSelectItem(categoryList.get(categoryNum - 1).getItemList().get(itemNum - 1));
+                decisionNum = scanner.nextInt();
+
+                // 1 이외의 수 입력 - 뒤로 가기 / 1 입력 - 장바구니에 추가
+                if (decisionNum == 2) {
+                    System.out.println("취소되었습니다.");
+                } else if (decisionNum != 1) {
+                    System.out.println("유효하지 않은 입력으로, 취소되었습니다.");
+                } else {
+                    myCart.addCartItem(categoryList.get(categoryNum - 1).getItemList().get(itemNum - 1));
+                    System.out.println(categoryList.get(categoryNum - 1).getItemList().get(itemNum - 1).getName() + " 이 장바구니에 추가되었습니다.");
+                    break;
                 }
             }
         }
+
         scanner.close();
     }
 }
