@@ -1,21 +1,36 @@
 package com.example.kiosk;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cart {
-    private String name;
-    private double price;
-    private int quantity;
     private double totalPrice;
 
-    private List<MenuItem> cartItemList = new ArrayList<>();
+    private final Map<MenuItem, Integer> cartItemList = new HashMap<>();
 
-    public void addCartItem(MenuItem item){
-        cartItemList.add(item);
+    public void addCartItem(MenuItem item) {
+        // 장바구니에 동일한 아이템이 있으면 value = value + 1
+        // 장바구니에 동일한 아이템이 없으면 value = 1
+        cartItemList.put(item, cartItemList.getOrDefault(item, 0) + 1);
     }
 
-    public List<MenuItem> getCartItemList() {
+    public Map<MenuItem, Integer> getCartItemList() {
         return cartItemList;
+    }
+
+    public int getQuantity(MenuItem item) {
+        return cartItemList.get(item);
+    }
+
+    public double getTotalPrice() {
+        for (MenuItem item : cartItemList.keySet()) {
+            totalPrice += item.getPrice() * cartItemList.get(item);
+        }
+
+        return totalPrice;
+    }
+
+    public void resetCartList() {
+        cartItemList.clear();
     }
 }
