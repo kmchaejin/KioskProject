@@ -9,19 +9,19 @@ public class Menu {
 
     private final String categoryName;
 
-    Menu(String categoryName){
+    Menu(String categoryName) {
         this.categoryName = categoryName;
     }
 
-    public void addMenuItem(MenuItem menuItem){
+    public void addMenuItem(MenuItem menuItem) {
         menuItems.add(menuItem);
     }
 
-    public String getCategoryName(){
+    public String getCategoryName() {
         return categoryName;
     }
 
-    public List<MenuItem> getItemList(){
+    public List<MenuItem> getItemList() {
         return menuItems;
     }
 }
