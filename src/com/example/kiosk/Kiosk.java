@@ -108,7 +108,6 @@ public class Kiosk {
                 }
             }
         }
-
         scanner.close();
     }
 }

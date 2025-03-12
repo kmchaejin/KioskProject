@@ -26,7 +26,6 @@ public class Cart {
         for (MenuItem item : cartItemList.keySet()) {
             totalPrice += item.getPrice() * cartItemList.get(item);
         }
-
         return totalPrice;
     }
 

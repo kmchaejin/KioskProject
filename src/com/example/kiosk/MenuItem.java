@@ -5,21 +5,21 @@ public class MenuItem {
     private double price;
     private String explanation;
 
-    public void setItem(String name, double price, String explanation){
+    public void setItem(String name, double price, String explanation) {
         this.name = name;
         this.price = price;
         this.explanation = explanation;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return price;
     }
 
-    public String getExplanation(){
+    public String getExplanation() {
         return explanation;
     }
 }
