@@ -23,6 +23,8 @@ public class Cart {
     }
 
     public double getTotalPrice() {
+        totalPrice = 0;
+
         for (MenuItem item : cartItemList.keySet()) {
             totalPrice += item.getPrice() * cartItemList.get(item);
         }

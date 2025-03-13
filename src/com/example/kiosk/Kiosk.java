@@ -47,8 +47,16 @@ public class Kiosk {
 
                     // 입력값이 1이면 주문 완료 후 프로그램 종료 / 입력값이 1이 아니면 메인 메뉴로 이동
                     if (decisionNum == 1) {
-                        System.out.println("주문이 완료되었습니다. 금액은 W " + myCart.getTotalPrice() + " 입니다.");
-                        myCart.resetCartList(); // 장바구니 초기화
+                        // 할인 정보 view 호출
+                        view.PrintDiscountInfo();
+                        decisionNum = scanner.nextInt();
+                        for(Discount e : Discount.values()){
+                            if(decisionNum == e.getCaseNum()){
+                                String formatPrice = String.format("%.2f", myCart.getTotalPrice() * (1 - e.getRate() * 0.01));
+                                System.out.println("주문이 완료되었습니다. 금액은 W " + formatPrice + " 입니다.");
+                                myCart.resetCartList(); // 장바구니 초기화
+                            }
+                        }
                         break;
                     } else if (decisionNum == 2) {
                         continue;

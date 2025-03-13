@@ -59,14 +59,19 @@ public class MenuView {
         }
 
         System.out.println("\n[ Total ]");
-        System.out.println("W " + cart.getTotalPrice() + "\n");
+        System.out.println("W " + String.format("%.2f", cart.getTotalPrice()) + "\n");
 
         System.out.print("1. 주문\t");
         System.out.println("2. 메뉴판");
     }
 
     // 할인 정보 출력
-    public void PrintDiscountInfo(){
+    public void PrintDiscountInfo() {
+        System.out.println("할인 정보를 입력해주세요.");
 
+        System.out.println(Discount.NMP.getCaseNum() + ". " + Discount.NMP.getName() + " : " + Discount.NMP.getRate() + " %");
+        System.out.println(Discount.SOLDIER.getCaseNum() + ". " + Discount.SOLDIER.getName() + " : " + Discount.SOLDIER.getRate() + " %");
+        System.out.println(Discount.STUDENT.getCaseNum() + ". " + Discount.STUDENT.getName() + " : " + Discount.STUDENT.getRate() + " %");
+        System.out.println(Discount.GENERAL.getCaseNum() + ". " + Discount.GENERAL.getName() + " : " + Discount.GENERAL.getRate() + " %");
     }
 }
