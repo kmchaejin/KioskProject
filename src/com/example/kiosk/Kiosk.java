@@ -3,6 +3,8 @@ package com.example.kiosk;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Kiosk {
     private List<Menu> categoryList = new ArrayList<>();
@@ -45,7 +47,9 @@ public class Kiosk {
                     decisionNum = scanner.nextInt();
                     System.out.println();
 
-                    // 입력값이 1이면 주문 완료 후 프로그램 종료 / 입력값이 1이 아니면 메인 메뉴로 이동
+                    // 입력값이 1이면 주문 완료 후 프로그램 종료
+                    // 입력값이 2이면 메인 메뉴로 이동
+                    // 입력값이 3이면 장바구니에서 SmokeShack 삭제 후 메인 메뉴로 이동
                     if (decisionNum == 1) {
                         // 할인 정보 view 호출
                         view.PrintDiscountInfo();
@@ -53,8 +57,8 @@ public class Kiosk {
                         decisionNum = scanner.nextInt();
 
                         // 특정 enum의 할인율 적용 후 총 금액 출력
-                        for(Discount e : Discount.values()){
-                            if(decisionNum == e.getCaseNum()){
+                        for (Discount e : Discount.values()) {
+                            if (decisionNum == e.getCaseNum()) {
                                 String formatPrice = String.format("%.2f", myCart.getTotalPrice() * (1 - e.getRate() * 0.01));
                                 System.out.println("주문이 완료되었습니다. 금액은 W " + formatPrice + " 입니다.");
                                 myCart.resetCartList(); // 장바구니 초기화
@@ -62,6 +66,14 @@ public class Kiosk {
                         }
                         break;
                     } else if (decisionNum == 2) {
+                        continue;
+                    } else if (decisionNum == 3) {
+                        myCart.getCartItemList().keySet().stream()
+                                .filter(item -> "SmokeShack".equals(item.getName()))
+                                .findFirst()
+                                .ifPresent(myCart.getCartItemList()::remove);
+
+                        System.out.println("장바구니에서 SmokeShack을 제거했습니다.\n");
                         continue;
                     } else {
                         System.out.println("유효하지 않은 값을 입력했습니다. 메인 메뉴로 돌아갑니다.\n");
@@ -72,7 +84,7 @@ public class Kiosk {
                 // 입력값이 5이면 주문 취소
                 if (categoryNum == categoryList.size() + 2) {
                     myCart.resetCartList();
-                    System.out.println("장바구니가 초기화됩니다.");
+                    System.out.println("장바구니가 초기화됩니다.\n");
                     continue;
                 }
             }

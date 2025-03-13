@@ -66,7 +66,8 @@ public class MenuView {
         System.out.println("W " + String.format("%.2f", cart.getTotalPrice()) + "\n");
 
         System.out.print("1. 주문\t");
-        System.out.println("2. 메뉴판");
+        System.out.print("2. 메뉴판\t");
+        System.out.println("3. SmokeShack을 장바구니에서 제거");
     }
 
     // 할인 정보 출력
