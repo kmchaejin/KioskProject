@@ -64,4 +64,9 @@ public class MenuView {
         System.out.print("1. 주문\t");
         System.out.println("2. 메뉴판");
     }
+
+    // 할인 정보 출력
+    public void PrintDiscountInfo(){
+
+    }
 }
