@@ -20,19 +20,22 @@ public class Main {
 
             // 반복하면서 리스트의 모든 인덱스에 접근 -> 모든 메뉴 출력
             for (int i = 0; i < burgers.quantity; i++) {
-                System.out.print((i+1) + ". ");
+                System.out.print((i + 1) + ". ");
                 System.out.println(burgers.getList(i));
             }
             System.out.println("0. 종료");
 
             // 입력값이 0이면 프로그램 종료
             inputNum = scanner.nextInt();
+            System.out.println();
+
             if (inputNum == 0) {
                 System.out.println("프로그램을 종료합니다.");
-            }
-            else{
+            } else if (inputNum > 0 && inputNum < burgers.quantity) {
                 // 선택한 햄버거 정보만 출력
-                System.out.println(burgers.getList(inputNum-1)+"\n");
+                System.out.println(burgers.getList(inputNum - 1) + "\n");
+            } else {
+                System.out.println("유효하지 않은 입력입니다. 다시 입력해주세요.\n");
             }
         }
 
