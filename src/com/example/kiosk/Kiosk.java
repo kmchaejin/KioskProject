@@ -49,7 +49,10 @@ public class Kiosk {
                     if (decisionNum == 1) {
                         // 할인 정보 view 호출
                         view.PrintDiscountInfo();
+
                         decisionNum = scanner.nextInt();
+
+                        // 특정 enum의 할인율 적용 후 총 금액 출력
                         for(Discount e : Discount.values()){
                             if(decisionNum == e.getCaseNum()){
                                 String formatPrice = String.format("%.2f", myCart.getTotalPrice() * (1 - e.getRate() * 0.01));
