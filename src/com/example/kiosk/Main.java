@@ -22,11 +22,17 @@ public class Main {
 
             // 정수 입력 후, 입력값이 0이면 프로그램 종료
             inputNum = scanner.nextInt();
+            System.out.println();
+
             if (inputNum == 0) {
                 System.out.println("프로그램을 종료합니다.");
             }
-            else{
+            else if(inputNum > 0 && inputNum < burgers.length){
                 System.out.println(burgers[inputNum-1][0]);
+                System.out.println();
+            }
+            else {
+                System.out.println("유효하지 않은 입력입니다. 다시 입력해주세요.\n");
             }
         }
 
