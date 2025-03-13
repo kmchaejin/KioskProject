@@ -31,22 +31,29 @@ public class Kiosk {
                 System.out.println("프로그램을 종료합니다.");
             }
             // 입력값이 0 이하이거나 햄버거 종류보다 큰 경우 재입력
-            else if(categoryNum < 0 || categoryNum > categoryList.size()){
+            else if (categoryNum < 0 || categoryNum > categoryList.size()) {
                 System.out.println("유효하지 않은 입력입니다. 다시 입력해주세요.\n");
             }
             // 선택한 카테고리 메뉴아이템 출력
             else {
-                System.out.println("[ " + categoryList.get(categoryNum - 1).getCategoryName().toUpperCase() + "MENU ]");
-                view.printItems(categoryList.get(categoryNum - 1));
+                while (true) {
+                    System.out.println("[ " + categoryList.get(categoryNum - 1).getCategoryName().toUpperCase() + "MENU ]");
+                    view.printItems(categoryList.get(categoryNum - 1));
 
-                int itemNum = scanner.nextInt();
+                    int itemNum = scanner.nextInt();
 
-                if(itemNum != 0){
-                    System.out.print("선택한 메뉴: ");
-                    System.out.print(categoryList.get(categoryNum - 1).getItemList().get(itemNum-1).getName() + " | ");
-                    System.out.print(categoryList.get(categoryNum - 1).getItemList().get(itemNum-1).getPrice() + " | ");
-                    System.out.println(categoryList.get(categoryNum - 1).getItemList().get(itemNum-1).getExplanation() + "\n");
 
+                    if (itemNum < 0 || itemNum > categoryList.get(categoryNum - 1).getItemList().size()) {
+                        System.out.println("유효하지 않은 입력입니다. 다시 입력해주세요.\n");
+                    } else if (itemNum == 0) {
+                        break;
+                    } else {
+                        System.out.print("선택한 메뉴: ");
+                        System.out.print(categoryList.get(categoryNum - 1).getItemList().get(itemNum - 1).getName() + " | ");
+                        System.out.print(categoryList.get(categoryNum - 1).getItemList().get(itemNum - 1).getPrice() + " | ");
+                        System.out.println(categoryList.get(categoryNum - 1).getItemList().get(itemNum - 1).getExplanation() + "\n");
+                        break;
+                    }
                 }
             }
         }
